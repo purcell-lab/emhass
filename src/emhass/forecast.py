@@ -1513,6 +1513,7 @@ class Forecast:
                 self.params["passed_data"]["beta"],
                 self.var_load_new,
             )
+        self.logger.debug("get_load_forecast returning:\n%s", P_Load_forecast)
         return P_Load_forecast
 
     def get_load_cost_forecast(
@@ -1592,11 +1593,11 @@ class Forecast:
                     data_list=data_list,
                     list_and_perfect=list_and_perfect,
                 )
-                df_final = df_final.copy()
                 df_final[self.var_load_cost] = forecast_out
         else:
             self.logger.error("Passed method is not valid")
             return False
+        self.logger.debug("get_load_cost_forecast returning:\n%s", df_final)    
         return df_final
 
     def get_prod_price_forecast(
@@ -1668,11 +1669,11 @@ class Forecast:
                     data_list=data_list,
                     list_and_perfect=list_and_perfect,
                 )
-                df_final = df_final.copy()
                 df_final[self.var_prod_price] = forecast_out
         else:
             self.logger.error("Passed method is not valid")
             return False
+        self.logger.debug("get_prod_price_forecast returning:\n%s", df_final) 
         return df_final
 
     def get_cached_forecast_data(self, w_forecast_cache_path) -> pd.DataFrame:
